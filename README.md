@@ -67,8 +67,8 @@ flowchart TD
 		HEALTH["Health checker"]
 		
 		subgraph HOSTS["/etc/hosts"]
-			HOSTS_CLEARNET["one.one.one.one<br><sub>127.0.0.2"]
-			HOSTS_ONION["dns4tor...ad.onion<br><sub>127.0.0.1"]
+			HOSTS_CLEARNET["<sub>127.0.0.2"]
+			HOSTS_ONION["<sub>127.0.0.1"]
 		end
 
 		SOCAT_ONION["socat<br><sub>127.0.0.1<br><sub>onion pipe"]
@@ -93,8 +93,8 @@ flowchart TD
 	HEALTH -.-> |set server order by health|DNS_SERVERS
 	%% HOSTNAME RESOLUTION
 
-	DNSCRYPT_ONION -.-> HOSTS_ONION
-	DNSCRYPT_CLEARNET -.-> HOSTS_CLEARNET
+	DNSCRYPT_ONION -.-> |dns4tor...ad.onion|HOSTS_ONION
+	DNSCRYPT_CLEARNET -.-> |one.one.one.one|HOSTS_CLEARNET
 	
 	%% CLEARNET RESOLVER
 
