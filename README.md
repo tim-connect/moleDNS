@@ -58,7 +58,7 @@ flowchart TD
 		NIC
 		subgraph DNSMASQ
 			DNSMASQ_SVC["dnsmasq service"]
-			DNS_SERVERS["dnsmasq-servers.conf<br><sub>dnscrypt proxies, strict ordering"]
+			DNS_SERVERS["dnsmasq-servers.conf<br><sub>dnscrypt proxies<br>strict ordering"]
 		end
 		
 		DNSCRYPT_ONION["dnscrypt - onion"]
