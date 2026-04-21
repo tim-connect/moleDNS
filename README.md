@@ -67,12 +67,12 @@ flowchart TD
 		HEALTH["Health checker"]
 		
 		subgraph HOSTS["/etc/hosts"]
-			HOSTS_CLEARNET["<sub>127.0.0.2"]
-			HOSTS_ONION["<sub>127.0.0.1"]
+			HOSTS_CLEARNET["127.0.0.2"]
+			HOSTS_ONION["127.0.0.1"]
 		end
 
-		SOCAT_ONION["socat<br><sub>127.0.0.1<br><sub>onion pipe"]
-		SOCAT_CLEARNET["socat<br><sub>127.0.0.2<br><sub>clearnet pipe"]
+		SOCAT_ONION["socat<br>127.0.0.1<br>onion pipe"]
+		SOCAT_CLEARNET["socat<br>127.0.0.2<br>clearnet pipe"]
 		TOR_PROXY["Tor SOCKS5 Proxy"]
 	end
 
