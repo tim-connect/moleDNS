@@ -5,7 +5,7 @@ services:
     ports:
     # you can remove this section if you only plan to provide services to other containers
       #- "853:53/tcp"		# not implemented
-      - "127.0.0.1:6053:53/udp"
+      - "127.0.0.2:53:53/udp"
       # for the dnscrypt browser UI
       - "9104:9104"
       # for the dnscrypt browser UI - hidden proxy
