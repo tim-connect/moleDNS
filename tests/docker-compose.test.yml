@@ -1,0 +1,13 @@
+services:
+  moledns-test:
+    container_name: moledns-test
+    build: ..
+    ports:
+      - "127.0.0.1:53053:53/udp"
+    cap_add:
+      - NET_ADMIN
+    healthcheck:
+      test: ["CMD-SHELL", "dig @127.0.0.1 -p 53 cloudflare.com A +short > /dev/null"]
+      interval: 5s
+      timeout: 3s
+      retries: 10

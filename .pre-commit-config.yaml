@@ -23,11 +23,11 @@ repos:
 #        args: ["-w"]   # auto-fix formatting
 
   # Dockerfile linting
-  - repo: https://github.com/hadolint/hadolint
-    rev: v2.12.0
+  - repo: https://github.com/shenxianpeng/hadolint-pre-commit
+    rev: v2.14.0.1
     hooks:
       - id: hadolint
-
+        args: [--ignore, DL3018, --ignore, DL3007]
   # Secret detection
   - repo: https://github.com/Yelp/detect-secrets
     rev: v1.5.0
@@ -35,3 +35,13 @@ repos:
       - id: detect-secrets
         args: ['--baseline', '.secrets.baseline']
 #        exclude: package.lock.json
+
+  - repo: local
+    hooks:
+      - id: docker-test
+        name: Docker container test
+        entry: ./tests/test-container.sh
+        language: system
+        pass_filenames: false
+#        stages: [pre-push]
+        stages: [pre-commit]

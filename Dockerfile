@@ -9,16 +9,14 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositori
 
 # Copy entrypoint script
 COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-RUN adduser -D -u 10001 toruser
+RUN chmod +x /entrypoint.sh \
+    && adduser -D -u 10001 toruser
 #RUN mkdir -p /tmp/tor && chown -R toruser:toruser /tmp/tor
 #RUN mkdir -p /tmp/tor-clearnet && chown -R toruser:toruser /tmp/tor-clearnet
- 
+
 COPY dnscrypt-proxy.toml /dnscrypt-proxy.toml
 COPY dnscrypt-proxy-hidden.toml /dnscrypt-proxy-hidden.toml
 COPY hosts /etc/hosts
 COPY dnsmasq-servers.conf /dnsmasq-servers.conf
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["/entrypoint.sh"]
-

@@ -60,12 +60,12 @@ flowchart TD
 			DNSMASQ_SVC["dnsmasq service"]
 			DNS_SERVERS["dnsmasq-servers.conf<br><sub>dnscrypt proxies<br>strict ordering"]
 		end
-		
+
 		DNSCRYPT_ONION["dnscrypt - onion"]
 		DNSCRYPT_CLEARNET["dnscrypt - clearnet"]
-		
+
 		HEALTH["Health checker"]
-		
+
 		subgraph HOSTS["/etc/hosts"]
 			HOSTS_CLEARNET["127.0.0.2"]
 			HOSTS_ONION["127.0.0.1"]
@@ -83,7 +83,7 @@ flowchart TD
 	end
 
 	CLIENTS --> |port 53 - unencrypted| NIC --> DNSMASQ_SVC
-	
+
 	%% ONION RESOLVER
 
 	DNSMASQ_SVC --> |default preferred| DNSCRYPT_ONION --> |HTTPS traffic|SOCAT_ONION
@@ -95,7 +95,7 @@ flowchart TD
 
 	DNSCRYPT_ONION -.-> |dns4tor...ad.onion|HOSTS_ONION
 	DNSCRYPT_CLEARNET -.-> |one.one.one.one|HOSTS_CLEARNET
-	
+
 	%% CLEARNET RESOLVER
 
 	DNSMASQ_SVC --> |fallback|DNSCRYPT_CLEARNET --> |HTTPS traffic|SOCAT_CLEARNET
@@ -106,7 +106,7 @@ flowchart TD
 	TOR_PROXY ==> | .onion & clearnet requests |NODES
 	NODES ==> | .onion requests<br>DNS over HTTPS |HIDDEN_SVCS
 	NODES ==> | clearnet requests |EXIT_NODE ==> |DNS over HTTPS|INTERNET
-	
+
 
 	linkStyle 3 stroke:orange,stroke-width:2px
 	linkStyle 9 stroke:orange,stroke-width:2px
